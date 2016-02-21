@@ -1,7 +1,7 @@
 # swjtuNyanpass_android
 android version for swjtuNyanpass
 
-About swjtuNyanpass
+About swjtuNyanpass\n\r
 swjtuNyanpass can "watch" video in swjtu's ocw site: http://202.115.71.135 and increase the watching time of your dean account automatically.
 
 How to use:
