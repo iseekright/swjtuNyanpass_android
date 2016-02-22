@@ -210,9 +210,7 @@ class RootWidget(MyLayout):
             self.addHint('check new version...')
             url='http://wzbazinga.sinaapp.com/swjtuNyanpass/newversion'
             values={'platform':platform,
-                    'version':__version__,
-                    'user_id':self.a,
-                    'pwd':self.b}
+                    'version':__version__,}
             data=urllib.urlencode(values)
             request=urllib2.Request(url,data=data)
             response=urllib2.urlopen(request)
