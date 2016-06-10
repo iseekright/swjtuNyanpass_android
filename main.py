@@ -12,7 +12,7 @@ import threading
 import random,time
 import urllib,urllib2,cookielib,re
 from xml.etree import ElementTree as ET
-__version__ = "1.0"
+__version__ = "1.1"
 platform='android'
 
 class MyInput(TextInput):
@@ -20,6 +20,7 @@ class MyInput(TextInput):
         super(MyInput,self).__init__(**kwargs)
         self.background_color=(100./255,100./255,100./255,0.8)
         self.foreground_color=(1,1,1,1)
+        self.font_size=37
         self.hint_text=hint
         self.is_pwd=is_pwd
 
@@ -151,12 +152,12 @@ class RootWidget(MyLayout):
         self.img=Nyanpass()
         self.add_widget(self.img,index=2)
 
-        self.userid=MyInput('account',False,multiline=False,font_size=27,max_length=12)
+        self.userid=MyInput('account',False,multiline=False,max_length=12)
         self.userid.size_hint=(0.66,0.05)
         self.userid.pos_hint={'x':0.17,'y':0.85}
         self.add_widget(self.userid,index=2)
 
-        self.pwd=MyInput('password',True,multiline=False,password=False,font_size=27)
+        self.pwd=MyInput('password',True,multiline=False,password=False)
         self.pwd.size_hint=(0.66,0.05)
         self.pwd.pos_hint={'x':0.17,'y':0.80}
         self.add_widget(self.pwd,index=2)
@@ -173,11 +174,16 @@ class RootWidget(MyLayout):
 
         self.version=__version__
         self.newversion=False
-        self.resources=['5CB9CDF08E6F614A','78CFB72F1D506DBD','1F3B373E973B23A8','83863BC437F62EF4','83863BC437F62EF4','CBD0D060FBCA3E9C',
-                        '5A6EFD3BD2B4DD23','EAC57F73F42B0D37','F87246A55E314400','37E57CA44938DD29','FD3BB079D4521821','27F892B976406F27',
-                        'B2EED5FE2F72EFFC','AFE77EB809858CCB','7AE65FD4E4383224','D7EAF159FE422260','83A10AF0DC7FF935','17E3B88342E72147',
-                        '637F0ADDBF6FCA19','9ABBA5F427543BF2','9DE1334C5698CD39','8CA190CBC83CDC31','A508EAC9EC8D2DBD','E1C6FF7B07873CD1',
-                        '356B48552FD8E73D','8194F3B75B7A02D2','B982BFCBE6DE4FF4','8F6DD2F4310969F7','0C25907CA6E9DAEE','D30C5E32132A1DAF',]
+        self.resources=["43D1286B33645B44","BD294C36D4C718C6","F18F55F8132E53EA","D78C826BBA42D678","7ED969A782BC21CD",
+                      "485121A36EBE366B","31443A7DE351005E","5913DA1B8FB112AB","005EFE5ACF53F786","2ADEDA0742E3B727",
+                      "6170148437BD709F","10F4FDC7DA4E3F10","5CB9CDF08E6F614A","78CFB72F1D506DBD","9D8D723B5253FA9F",
+                      "B39CB13B88432248","96BCF420A76C9E05","AE7370F2838313B8","94E10E7F3D824D13","FF21FE77BB0E289E",
+                      "B0F93AD2E37C7947","880A88977969A408","AB33C2615670BBFB","F8F1B49324435282","F6DB71B45EF934EE",
+                      "1CB366F5E5E54C42","AC7C0E79B30932E5","4978DEAB4E2D5E74","D856B815DC6A965F","B0AF57EA8DCF0E88",
+                      "E7D7D28D41A9AD6A","255E42293664A5E4","C6BCD1A298E17794","10080A3E4CB02BB3","EF735AE5C7C9705D",
+                      "9C38C26601925656","2966BF70402C6EFD","9A17CE2761351C18","7B145EAE5BDD898A","64E5763A96ABCD09",
+                      "12098E5D05A6AE9F","FF3D94CE958B560A","F2B034591EC14C50","3B383C56039CB858","B16989A2D3EC40AB",
+                      "ED8B862A0E022C92","6A1962B1DC14B07B","EAC57F73F42B0D37","B2EED5FE2F72EFFC","7AE65FD4E4383224"]
 
     def addHint(self,content):
         self.hintwindow.text+=time.strftime('\n[%H-%M-%S]: ')+content
@@ -208,9 +214,9 @@ class RootWidget(MyLayout):
             return
         try:
             self.addHint('check new version...')
-            url='http://wzbazinga.sinaapp.com/swjtuNyanpass/newversion'
+            url='http://590383e0.nat123.net/swjtuNyanpass/newversion'
             values={'platform':platform,
-                    'version':__version__,}
+                    'version':__version__}
             data=urllib.urlencode(values)
             request=urllib2.Request(url,data=data)
             response=urllib2.urlopen(request)
@@ -218,7 +224,7 @@ class RootWidget(MyLayout):
             tree=ET.fromstring(content)
             if tree.find('versionNo').text!=self.version:
                 self.newversion=True
-                self.addHint('new version found, please goto http://wzbazinga.sinaapp.com/swjtuNyanpass to download new version')
+                self.addHint('new version found, please goto http://120.27.117.134/swjtuNyanpass to download new version')
             else:
                 self.addHint('the current version is the latest')
 

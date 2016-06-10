@@ -1,7 +1,7 @@
 [app]
 
 # (str) Title of your application
-title = swjtuNyanpass
+title = swjtuNyanpass_v1.1
 
 # (str) Package name
 package.name = swjtuNyanpassApp
@@ -25,7 +25,7 @@ source.exclude_exts = spec
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-version = 1.0
+version = 1.1
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]
